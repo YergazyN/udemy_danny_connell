@@ -8,20 +8,27 @@
   </div>
 </template>
 
+
+<!-- composition API -->
 <script>
 
+import { ref } from 'vue';
+
 export default {
-  data() {
-    return {
-      counter: 0
+  setup() {
+    const counter = ref(0)
+
+    const increaseCounter = () => {
+      counter.value++
     }
-  },
-  methods: {
-    increaseCounter() {
-      this.counter ++;
-    },
-    decreaseCounter() {
-      this.counter --;
+    const decreaseCounter = () => {
+      counter.value--
+    }
+
+    return {
+      counter,
+      increaseCounter,
+      decreaseCounter
     }
   }
 }
@@ -29,13 +36,34 @@ export default {
 </script>
 
 
+<!-- options API -->
+<!-- <script>
+export default {
+  data() {
+    return {
+      counter: 0,
+    };
+  },
+  methods: {
+    increaseCounter() {
+      this.counter++;
+    },
+    decreaseCounter() {
+      this.counter--;
+    },
+  },
+};
+</script> -->
+
+
 <style>
-.home{
+.home {
   text-align: center;
   padding: 20px;
 }
 
-.btn, .counter{
+.btn,
+.counter {
   font-size: 36px;
   margin: 10px;
 }
