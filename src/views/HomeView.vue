@@ -9,31 +9,43 @@
 </template>
 
 
-<!-- composition API -->
-<script>
+<!-- script setup -->
+<script setup>
+  import { ref } from "vue";
+  const counter = ref(0);
 
-import { ref } from 'vue';
+  const increaseCounter = () => {
+    counter.value++;
+  };
+  const decreaseCounter = () => {
+    counter.value--;
+  };
+</script>
+
+
+<!-- composition API -->
+<!-- <script>
+import { ref } from "vue";
 
 export default {
   setup() {
-    const counter = ref(0)
+    const counter = ref(0);
 
     const increaseCounter = () => {
-      counter.value++
-    }
+      counter.value++;
+    };
     const decreaseCounter = () => {
-      counter.value--
-    }
+      counter.value--;
+    };
 
     return {
       counter,
       increaseCounter,
-      decreaseCounter
-    }
-  }
-}
-
-</script>
+      decreaseCounter,
+    };
+  },
+};
+</script> -->
 
 
 <!-- options API -->
