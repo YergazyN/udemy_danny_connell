@@ -1,9 +1,12 @@
 <template>
   <div class="home">
+    <h2>{{ counterData.title }}</h2>
     <div>
-      <button @click="decreaseCounter" class="btn">-</button>
-      <span class="counter">{{ counter }}</span>
-      <button @click="increaseCounter" class="btn">+</button>
+      <button @click="decreaseCounter(2)" class="btn">-2</button>
+      <button @click="decreaseCounter(1)" class="btn">-</button>
+      <span class="counter">{{ counterData.count }}</span>
+      <button @click="increaseCounter(1)" class="btn">+</button>
+      <button @click="increaseCounter(2)" class="btn">+2</button>
     </div>
   </div>
 </template>
@@ -11,62 +14,22 @@
 
 <!-- script setup -->
 <script setup>
-  import { ref } from "vue";
-  const counter = ref(0);
+import { ref, reactive } from "vue";
+const counter = ref(0);
 
-  const increaseCounter = () => {
-    counter.value++;
-  };
-  const decreaseCounter = () => {
-    counter.value--;
-  };
+const counterData = reactive({
+  count: 0,
+  title: "My counter"
+})
+
+const increaseCounter = (amount) => {
+  console.log(amount)
+  counterData.count = counterData.count + amount;
+};
+const decreaseCounter = (amount) => {
+  counterData.count = counterData.count - amount;
+};
 </script>
-
-
-<!-- composition API -->
-<!-- <script>
-import { ref } from "vue";
-
-export default {
-  setup() {
-    const counter = ref(0);
-
-    const increaseCounter = () => {
-      counter.value++;
-    };
-    const decreaseCounter = () => {
-      counter.value--;
-    };
-
-    return {
-      counter,
-      increaseCounter,
-      decreaseCounter,
-    };
-  },
-};
-</script> -->
-
-
-<!-- options API -->
-<!-- <script>
-export default {
-  data() {
-    return {
-      counter: 0,
-    };
-  },
-  methods: {
-    increaseCounter() {
-      this.counter++;
-    },
-    decreaseCounter() {
-      this.counter--;
-    },
-  },
-};
-</script> -->
-
 
 <style>
 .home {
